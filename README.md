@@ -35,6 +35,7 @@ python prepare_training_data_eta.py --data_folder [DATA_FOLDER]
 
 ### Run models
 **You can choose to manually train the model, or use [our trained ones](https://drive.google.com/drive/folders/1IPS8awH8Htmt9hGMa-cE6lwoJg60ttaC?usp=share_link) for testing.**
+
 **train model for core challenge**
 ```python
 python rec_cc.py --city [city] --device [gpu_id] --batch_size 2 --hidden_channels 32 --epochs 20 --fill -1
