@@ -1,0 +1,131 @@
+Traffic4cast 2022 Data in T4C_INPUTS_2022.zip
+
+This file provides training input and helper datasets for the Traffic4cast 2022
+competition at NeurIPS 2022. For more information on the datasets see
+https://github.com/iarai/NeurIPS2022-traffic4cast
+
+The training labels for Traffic4cast 2022 are provided separately and can be
+downloaded from https://developer.here.com/sample-data
+
+
+After unzipping you should have received the following folder structure
+
+├── bounding_boxes.geojson
+├── loop_counter
+│   ├── london
+│   │   └── counters_daily_by_node.parquet
+│   ├── madrid
+│   │   └── counters_daily_by_node.parquet
+│   └── melbourne
+│       └── counters_daily_by_node.parquet
+├── road_graph
+│   ├── london
+│   │   ├── cell_mapping.parquet
+│   │   ├── road_graph_edges.parquet
+│   │   └── road_graph_nodes.parquet
+│   ├── madrid
+│   │   ├── cell_mapping.parquet
+│   │   ├── road_graph_edges.parquet
+│   │   └── road_graph_nodes.parquet
+│   └── melbourne
+│       ├── cell_mapping.parquet
+│       ├── road_graph_edges.parquet
+│       └── road_graph_nodes.parquet
+├── submissions
+│   ├── london
+│   ├── madrid
+│   └── melbourne
+└── train
+    ├── london
+    │   ├── input
+    │   │   ├── counters_2019-07-01.parquet
+    │   │       ...
+    │   └── labels
+    ├── madrid
+    │   ├── input
+    │   │   ├── counters_2021-06-01.parquet
+    │   │       ...
+    │   └── labels
+    └── melbourne
+        ├── input
+        │   ├── counters_2020-06-01.parquet
+        │       ...
+        └── labels
+
+
+** bounding_boxes.geojson **
+
+This file provides the bounding boxes for the competition data in the three
+cities London, Madrid and Melbourne.
+
+
+** loop_counter **
+
+This folder contains open traffic count data for London, Madrid and Melbourne.
+The locations of the loop counters have been mapped to the simplified OSM road graph (see below).
+
+London - Powered by TfL Open Data
+The raw TIMS detector data is available from https://roads.data.tfl.gov.uk/
+The license is based on version 2.0 of the Open Government Licence allowing to copy, publish,
+transmit and adapt the information in commercial and non-commercial applications, see
+https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service 
+
+London - Highways England:
+The data is available through the API at https://webtris.highwaysengland.co.uk/
+Licensed under Open Government Licence allowing to copy, publish, transmit and adapt the
+information in commercial and non-commercial applications, see
+https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+
+Madrid - Madrid City Council
+The data is available on the Madrid open data portal at
+https://datos.madrid.es/egob/catalogo/208627-0-transporte-ptomedida-historico and
+https://datos.madrid.es/egob/catalogo/202468-0-intensidad-trafico
+The license terms allow the reuse of the data for commercial and non-commercial purposes,
+see https://datos.madrid.es/egob/catalogo/aviso-legal
+
+Melbourne - Department of Transport, Victoria State Government
+The data is available through the open data portal of the State of Victoria at
+https://discover.data.vic.gov.au/dataset/traffic-lights and
+https://discover.data.vic.gov.au/dataset/traffic-signal-volume-data
+Licensed under Creative Commons Attribution 4.0 International allowing the share and adapt
+in any form, see https://creativecommons.org/licenses/by/4.0/
+
+
+** road_graph **
+
+© OpenStreetMap contributors - this folder contains a simplified road graph for
+London, Madrid and Melbourne based on Map data from OpenStreetMap.
+
+OpenStreetMap (OSM) data licensed under the Open Data Commons Open Database License (ODbL)
+by the OpenStreetMap Foundation (OSMF):
+"You are free to copy, distribute, transmit and adapt our data, as long as you credit
+OpenStreetMap and its contributors. If you alter or build upon our data, you may distribute
+the result only under the same licence."
+See details of the copyright at https://www.openstreetmap.org/copyright and the full legal
+code of the license at https://opendatacommons.org/licenses/odbl/1-0/
+
+The files road_graph_edges.parquet and road_graph_nodes.parquet contain the simplified graph
+with the bare minimum attributes as node/edge graph structure. Where necessary additional
+nodes were added for the mapping to the loop counter locations (see above). Otherwise the
+the original OSM node IDs were retained.
+
+The file cell_mapping.parquet provides a mapping of each edge in the road graph to the
+intersecting cells in the Traffic4cast Traffic Map Movie grid for the corresponding city
+(based on bounding_boxes.geojson).
+
+
+** submissions **
+
+This folder is empty and will be used by participants for preparing their submissions.
+
+
+** train **
+
+This folder provides the training input data for all three cities.
+
+The subfolder <city>/input contains the loop_counter (see above) information pre-processed
+in order to be directly consumable by a data loader.
+
+The subfolder <city>/labels is being generated after downloading the Traffic4cast 2022 datasets
+from https://developer.here.com/sample-data and running the label pre-processing script,
+for more information see https://github.com/iarai/NeurIPS2022-traffic4cast
