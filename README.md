@@ -34,7 +34,7 @@ python prepare_training_data_eta.py --data_folder [DATA_FOLDER]
 ```
 
 ### Run models
-**You can choose to manually train the model, or use [our trained ones](https://drive.google.com/drive/folders/1IPS8awH8Htmt9hGMa-cE6lwoJg60ttaC?usp=share_link) for testing.**
+**You can choose to train the model from scratch, or use [our trained ones](https://drive.google.com/drive/folders/1IPS8awH8Htmt9hGMa-cE6lwoJg60ttaC?usp=share_link) for testing (put the save folder in the root).**
 
 **train model for core challenge**
 ```python
